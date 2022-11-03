@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This Script redirects
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo /etc/init.d/nginx restart
+sudo rm /var/www/html/*.html
+echo "Hello World\n" | sudo tee /var/www/html/index.html
+string="server_name bestschooldevops.tech;\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/watch\?v=QH2-TGUlwu4;\n\t}"
+sudo sed -i "s/server_name _;/$string/" /etc/nginx/sites-available/default
