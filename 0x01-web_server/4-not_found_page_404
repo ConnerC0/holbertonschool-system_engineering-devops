@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This Script redirects
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo /etc/init.d/nginx restart
+sudo rm /var/www/html/*.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Ceci n\'est pas une page" | sudo tee /var/www/html/error404.html
+target="^\tlocation / {"
+replace="\tlocation /redirect_me {\n\t\treturn 301 \$scheme://youtu.be/A311CnTjfos;\n\t}\n\n\tlocation / {"
+sudo sed -i "s@$target@$replace@" /etc/nginx/sites-available/default
+replace="\terror_page 404 /error404.html;\n\n\tlocation / {"
+sudo sed -i "s@$target@$replace@" /etc/nginx/sites-available/default
