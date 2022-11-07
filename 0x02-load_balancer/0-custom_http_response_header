@@ -2,9 +2,9 @@
 # This is a script for nginx setup with parameters
 
 target="^\tlocation / {"
-replacement="\tlocation /redirect_me {\n\t\treturn 301 \@scheme://youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\n\tlocation / {"
-replace="\terror_page 404 /error404.html;\n\n\tadd_header X-Served-By $HOSTNAME;\n\n\tlocation / {"
-
+replacement="\tlocation /redirect_me {\n\t\treturn 301 \$scheme://youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\n\tlocation / {"
+replace="\terror_page 404 /error404.html;\n\n\tlocation / {"
+header="\tlocation / {\n\t\tadd_header X-Served-By "$HOSTNAME";"
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -14,5 +14,6 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
 sudo sed -i "s|$target|$replacement|" /etc/nginx/sites-available/default
 sudo sed -i "s|$target|$replace|" /etc/nginx/sites-available/default
+sudo sed -i "s|$target|$header|" /etc/nginx/sites-available/default
 sudo service nginx restart
 sudo service nginx reload
