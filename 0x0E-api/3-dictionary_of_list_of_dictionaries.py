@@ -27,6 +27,6 @@ if __name__ == '__main__':
     json_dict = {}
     json_dict[id] = jsonTask
 
-    with open("./{}.json".format(id), "w", encoding="UTF8",
+    with open("todo_all_employees.json", "w", encoding="UTF8",
               newline='') as file:
         file.write(json.dumps(json_dict))
