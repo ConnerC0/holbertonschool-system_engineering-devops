@@ -5,12 +5,11 @@ Python script to export data in the JSON format.
 """
 
 
+import json
+import requests
+from sys import argv
+
 if __name__ == '__main__':
-    import json
-    import requests
-    from sys import argv
-    
-    
     id = argv[1]
     user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
                         format(id)).json()
