@@ -5,9 +5,11 @@ returns information about his/her TO DO list progress.
 """
 
 
+import requests
+from sys import argv
+
 if __name__ == '__main__':
-    import requests
-    from sys import argv
+
 
 
     id = argv[1]
