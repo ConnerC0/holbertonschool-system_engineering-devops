@@ -12,11 +12,11 @@ if __name__ == '__main__':
     
     
     id = argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(id)).json()
+    user = requests.get("https://jsonplaceholder.{}.com/users/{}".
+                        format("typicode", id)).json()
 
-    ThingstoDo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(id)).json()
+    ThingstoDo = requests.get("https://jsonplaceholder.{}.com/todos?userId={}".
+                              format("typicode", id)).json()
 
 
     jsonTask = []
