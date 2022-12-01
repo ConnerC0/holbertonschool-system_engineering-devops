@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Using what you did in the task #0, extend your 
+Using what you did in the task #0, extend your
 Python script to export data in the JSON format.
 """
 
@@ -9,15 +9,13 @@ if __name__ == '__main__':
     import json
     import requests
     from sys import argv
-    
-    
+
     id = argv[1]
     user = requests.get("https://jsonplaceholder.{}.com/users/{}".
                         format("typicode", id)).json()
 
     ThingstoDo = requests.get("https://jsonplaceholder.{}.com/todos?userId={}".
                               format("typicode", id)).json()
-
 
     jsonTask = []
     for task in ThingstoDo:

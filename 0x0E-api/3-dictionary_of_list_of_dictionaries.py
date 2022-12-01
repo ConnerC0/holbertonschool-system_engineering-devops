@@ -17,7 +17,6 @@ if __name__ == '__main__':
     ThingstoDo = requests.get("https://jsonplaceholder.{}.com/todos?userId={}".
                               format("typicode", id)).json()
 
-
     jsonTask = []
     for task in ThingstoDo:
         task_dict = {}
@@ -28,6 +27,6 @@ if __name__ == '__main__':
     json_dict = {}
     json_dict[id] = jsonTask
 
-
-    with open("./{}.json".format(id), "w", encoding="UTF8", newline='') as file:
+    with open("./{}.json".format(id), "w", encoding="UTF8",
+              newline='') as file:
         file.write(json.dumps(json_dict))
