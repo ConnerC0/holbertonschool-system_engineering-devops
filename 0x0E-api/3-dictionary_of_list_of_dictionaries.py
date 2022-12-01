@@ -11,16 +11,16 @@ import requests
 
 if __name__ == '__main__':
     userstuff = requests.get("https://jsonplaceholder.{}.com/users/".
-                        format("typicode"))
+                             format("typicode"))
     UserInformation = json.loads(userstuff.text)
 
     json_dict = {}
 
     for user in UserInformation:
         id = user['id']
-        ThingstoDo = requests.get("https://jsonplaceholder.{}.com/todos?userId={}".
-                                format("typicode", id))
-        ThingstoDostuff = json.loads(ThingstoDo.text)
+        Things = requests.get("https://jsonplaceholder.{}.com/todos?userId={}".
+                              format("typicode", id))
+        ThingstoDostuff = json.loads(Things.text)
 
         jsonTask = []
         for task in ThingstoDostuff:
