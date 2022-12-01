@@ -10,21 +10,26 @@ import requests
 
 
 if __name__ == '__main__':
-    user = requests.get("https://jsonplaceholder.{}.com/users/{}".
-                        format("typicode", id)).json()
+    userstuff = requests.get("https://jsonplaceholder.{}.com/users/".
+                        format("typicode"))
+    UserInformation = json.loads(userstuff.text)
 
     json_dict = {}
 
-    for i in user:
+    for user in UserInformation:
+        id = user['id']
         ThingstoDo = requests.get("https://jsonplaceholder.{}.com/todos?userId={}".
-                                format("typicode", id)).json()
+                                format("typicode", id))
+        ThingstoDostuff = json.loads(ThingstoDo.text)
+
         jsonTask = []
-        for task in ThingstoDo:
+        for task in ThingstoDostuff:
             task_dict = {}
-            task_dict["task"] = task.get('title')
-            task_dict["completed"] = task.get("completed")
-            task_dict["username"] = user.get("username")
+            task_dict["username"] = user['username']
+            task_dict["task"] = task['title']
+            task_dict["completed"] = task['completed']
             jsonTask.append(task_dict)
+
         json_dict[id] = jsonTask
 
     with open("todo_all_employees.json", "w", encoding="UTF8",
