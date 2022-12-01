@@ -8,10 +8,7 @@ returns information about his/her TO DO list progress.
 import requests
 from sys import argv
 
-if __name__ == '__main__':
-
-
-
+def doesstuff():
     id = argv[1]
     user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
                         format(id)).json()
@@ -28,3 +25,6 @@ if __name__ == '__main__':
           .format(user.get('name'), len(thingsCompleted), len(ThingstoDo)))
     for task in thingsCompleted:
         print("\t {}".format(task))
+
+if __name__ == '__main__':
+    doesstuff()
