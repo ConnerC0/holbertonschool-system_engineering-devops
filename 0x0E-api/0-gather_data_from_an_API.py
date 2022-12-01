@@ -11,11 +11,11 @@ from sys import argv
 
 def doesstuff():
     id = argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(id)).json()
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}"\
+                        .format(id)).json()
 
-    ThingstoDo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                              format(id)).json()
+    ThingstoDo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}"\
+                              .format(id)).json()
 
     thingsCompleted = []
 
